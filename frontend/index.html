@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Rental Home Advisor | Multimodal Inspection &amp; Statutory RAG</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-brand">
+          <div class="brand-icon">RA</div>
+          <span>Rental Advisor</span>
+        </div>
+        <div class="sidebar-tagline">Multimodal Lease &amp; Property AI</div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-tab="dashboard">
+          <span class="icon">⊞</span>
+          <span>Dashboard</span>
+        </button>
+        <button class="nav-item" data-tab="cv-detection">
+          <span class="icon">📷</span>
+          <span>Defect Detection</span>
+        </button>
+        <button class="nav-item" data-tab="agreement-audit">
+          <span class="icon">📄</span>
+          <span>Rental Agreement</span>
+        </button>
+        <button class="nav-item" data-tab="rag-chatbot">
+          <span class="icon">💬</span>
+          <span>AI Rental Assistant</span>
+        </button>
+        <button class="nav-item" data-tab="inspection-summary">
+          <span class="icon">📊</span>
+          <span>Inspection Summary</span>
+        </button>
+        <button class="nav-item" data-tab="landlord-questions">
+          <span class="icon">❓</span>
+          <span>Landlord Questions</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="badge-status">
+          <span class="status-dot"></span>
+          <span id="backend-status-text">FastAPI Backend Active</span>
+        </div>
+        <div style="margin-top: 6px; font-size: 11px; color: #94a3b8;">
+          Jurisdiction: Maharashtra, India
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Wrapper -->
+    <div class="main-wrapper">
+      <!-- Sticky Top Header -->
+      <header class="top-bar">
+        <div class="top-bar-left">
+          <span class="page-title" id="page-title-text">Dashboard</span>
+          <span class="jurisdiction-pill">
+            <span>⚖️</span>
+            <span>MTA 2021 &amp; MRC Act 1999 Grounded</span>
+          </span>
+        </div>
+        <div class="top-bar-right">
+          <button class="btn btn-secondary btn-sm" id="btn-reset-assessment">
+            ↺ New Assessment
+          </button>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <main class="content-area">
+        <!-- Progress / Loading Banner -->
+        <div class="loading-bar" id="global-loading-bar">
+          <div class="loading-bar-inner"></div>
+        </div>
+
+        <!-- Notification Toast Banner -->
+        <div id="toast-message" style="display: none; padding: 12px 16px; margin-bottom: 20px; border-radius: 6px; font-size: 13.5px; font-weight: 500;"></div>
+
+        <!-- ===================================================================
+             1. HOME / DASHBOARD VIEW
+             =================================================================== -->
+        <section id="view-dashboard" class="view-section active">
+          <div class="welcome-banner">
+            <span class="welcome-badge">Multimodal Lease &amp; Condition Intelligence</span>
+            <h1 class="welcome-headline">Understand a rental property before you sign.</h1>
+            <p class="welcome-text">
+              Evaluate property condition photos, audit lease clauses, and verify statutory tenant rights with grounded regulatory retrieval before executing a tenancy agreement.
+            </p>
+          </div>
+
+          <!-- Feature Navigation Cards -->
+          <div class="features-grid">
+            <div class="feature-card" onclick="switchTab('cv-detection')">
+              <div class="feature-icon-box">📷</div>
+              <h3 class="feature-card-title">1. Upload Property Images</h3>
+              <p class="feature-card-desc">Detect wall cracks, mold seepage, and pest infestation with YOLO11 vision.</p>
+            </div>
+            <div class="feature-card" onclick="switchTab('agreement-audit')">
+              <div class="feature-icon-box">📄</div>
+              <h3 class="feature-card-title">2. Upload Rental Agreement <span class="optional-tag">Optional</span></h3>
+              <p class="feature-card-desc">Extract clauses &amp; classify penalty, maintenance, and deposit terms via NLP.</p>
+            </div>
+            <div class="feature-card" onclick="switchTab('rag-chatbot')">
+              <div class="feature-icon-box">💬</div>
+              <h3 class="feature-card-title">3. Ask AI Rental Assistant</h3>
+              <p class="feature-card-desc">Query authoritative housing statutes via hybrid BM25 + SBERT RAG.</p>
+            </div>
+            <div class="feature-card" onclick="switchTab('inspection-summary')">
+              <div class="feature-icon-box">📊</div>
+              <h3 class="feature-card-title">4. View Inspection Summary</h3>
+              <p class="feature-card-desc">Inspect Property Health Score, risk fusion breakdown, and statutory evidence.</p>
+            </div>
+          </div>
+
+          <!-- Quick Assessment Launchpad Card -->
+          <div class="card">
+            <div class="card-title">
+              <span>Quick Multimodal Property Assessment</span>
+              <span class="badge badge-info">Integrated Pipeline</span>
+            </div>
+            <p class="card-subtitle">
+              Upload room inspection photos and an optional draft rental agreement to run the full CV + NLP + RAG Risk Fusion pipeline.
+            </p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 16px;">
+              <!-- Property Photos Dropzone -->
+              <div>
+                <label style="font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--text-dim); display: block; margin-bottom: 6px;">
+                  Property Photos <span style="color: var(--danger)">*</span>
+                </label>
+                <div class="dropzone" id="quick-photo-dropzone">
+                  <div class="dropzone-icon">📷</div>
+                  <div class="dropzone-text">Click or drag property photos here</div>
+                  <div class="dropzone-hint">JPG, PNG up to 25MB (Multiple images supported)</div>
+                  <input type="file" id="input-quick-photos" multiple accept="image/jpeg,image/png,image/jpg" style="display: none;">
+                </div>
+                <div id="quick-photo-preview-list" class="file-preview-grid"></div>
+              </div>
+
+              <!-- Agreement PDF Dropzone -->
+              <div>
+                <label style="font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--text-dim); display: block; margin-bottom: 6px;">
+                  Rental Agreement <span class="optional-tag">Optional</span>
+                </label>
+                <div class="dropzone" id="quick-agreement-dropzone">
+                  <div class="dropzone-icon">📄</div>
+                  <div class="dropzone-text">Click or drag lease agreement PDF</div>
+                  <div class="dropzone-hint">PDF up to 20MB (Optional: skip for image-only audit)</div>
+                  <input type="file" id="input-quick-agreement" accept="application/pdf" style="display: none;">
+                </div>
+                <div id="quick-agreement-preview" style="margin-top: 16px;"></div>
+              </div>
+            </div>
+
+            <div class="action-row">
+              <span id="quick-validation-msg" style="font-size: 12.5px; color: var(--text-dim); margin-right: auto;">
+                Please select at least one property photo to begin.
+              </span>
+              <button class="btn btn-primary" id="btn-run-assessment" disabled>
+                <span>Run Property Assessment</span>
+                <span>→</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             2. IMAGE ANALYSIS / DEFECT DETECTION VIEW
+             =================================================================== -->
+        <section id="view-cv-detection" class="view-section">
+          <div class="section-header">
+            <h2 class="section-title">Image Analysis &amp; Defect Detection</h2>
+            <p class="section-desc">
+              Computer vision inspection using YOLO11 for cracks, mold seepage, and pest contamination.
+            </p>
+          </div>
+
+          <!-- Upload Card -->
+          <div class="card">
+            <div class="card-title">Property Inspection Photos</div>
+            <p class="card-subtitle">Upload multiple room, wall, bathroom, or ceiling photos for defect analysis.</p>
+            
+            <div class="dropzone" id="cv-photo-dropzone">
+              <div class="dropzone-icon">📷</div>
+              <div class="dropzone-text">Drop property images here or click to browse</div>
+              <div class="dropzone-hint">Supports JPEG, PNG</div>
+              <input type="file" id="input-cv-photos" multiple accept="image/jpeg,image/png,image/jpg" style="display: none;">
+            </div>
+
+            <div id="cv-photos-list" class="file-preview-grid"></div>
+
+            <div class="action-row">
+              <button class="btn btn-primary" id="btn-cv-analyze" disabled>
+                Analyze Property Images
+              </button>
+            </div>
+          </div>
+
+          <!-- Real Detection Results Display -->
+          <div class="card" id="cv-results-card">
+            <div class="card-title">
+              <span>Detection Results</span>
+              <span class="badge badge-info" id="cv-total-defects-badge">0 Defects Detected</span>
+            </div>
+            
+            <!-- Defect Count Metrics -->
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 16px 0 24px 0;">
+              <div style="background-color: var(--bg-surface-subtle); padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-light);">
+                <div style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--text-dim);">Cracks</div>
+                <div style="font-size: 22px; font-weight: 700; color: var(--text-main);" id="cv-count-crack">0</div>
+              </div>
+              <div style="background-color: var(--bg-surface-subtle); padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-light);">
+                <div style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--text-dim);">Mold / Moisture</div>
+                <div style="font-size: 22px; font-weight: 700; color: var(--text-main);" id="cv-count-mold">0</div>
+              </div>
+              <div style="background-color: var(--bg-surface-subtle); padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-light);">
+                <div style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--text-dim);">Pests</div>
+                <div style="font-size: 22px; font-weight: 700; color: var(--text-main);" id="cv-count-pest">0</div>
+              </div>
+              <div style="background-color: var(--bg-surface-subtle); padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--border-light);">
+                <div style="font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--text-dim);">Visual Risk</div>
+                <div style="font-size: 22px; font-weight: 700; color: var(--primary);" id="cv-visual-risk-score">0.0</div>
+              </div>
+            </div>
+
+            <!-- Detections Table / List -->
+            <div id="cv-detections-container">
+              <div class="empty-state">
+                <div class="empty-state-icon">🔍</div>
+                <div class="empty-state-title">No image analysis run yet</div>
+                <div class="empty-state-desc">Upload photos above and run the assessment to view YOLO11 detections.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             3. RENTAL AGREEMENT ANALYSIS VIEW
+             =================================================================== -->
+        <section id="view-agreement-audit" class="view-section">
+          <div class="section-header">
+            <h2 class="section-title">Rental Agreement Analysis</h2>
+            <p class="section-desc">
+              Automated PDF clause extraction &amp; classification using TF-IDF + Logistic Regression.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-title">
+              <span>Rental Agreement PDF</span>
+              <span class="optional-tag">Optional Upload</span>
+            </div>
+            <p class="card-subtitle">
+              Upload a draft agreement PDF to identify clauses governing security deposits, maintenance duties, and penalty covenants.
+            </p>
+
+            <div class="dropzone" id="agreement-pdf-dropzone">
+              <div class="dropzone-icon">📄</div>
+              <div class="dropzone-text">Drop rental agreement PDF here or click to browse</div>
+              <div class="dropzone-hint">PDF format only (Optional)</div>
+              <input type="file" id="input-agreement-pdf" accept="application/pdf" style="display: none;">
+            </div>
+
+            <div id="agreement-file-preview" style="margin-top: 14px;"></div>
+          </div>
+
+          <!-- Classified Clauses Output -->
+          <div class="card" id="agreement-results-card">
+            <div class="card-title">
+              <span>Extracted &amp; Classified Clauses</span>
+              <span class="badge badge-info" id="agreement-clause-count-badge">0 Clauses Audited</span>
+            </div>
+            <p class="card-subtitle">
+              Clauses are classified across statutory categories with calculated legal risk ratings.
+            </p>
+
+            <div id="clauses-container">
+              <div class="empty-state" id="no-agreement-state">
+                <div class="empty-state-icon">📄</div>
+                <div class="empty-state-title">No rental agreement provided</div>
+                <div class="empty-state-desc">
+                  Rental agreement upload is optional. If skipped, visual defect inspection and statutory RAG will proceed normally with agreement risk set to 0.0.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             4. AI RENTAL CHATBOT (RAG ASSISTANT) VIEW
+             =================================================================== -->
+        <section id="view-rag-chatbot" class="view-section">
+          <div class="section-header">
+            <h2 class="section-title">AI Rental Assistant</h2>
+            <p class="section-desc">
+              Statutory tenancy inquiries strictly grounded in Maharashtra &amp; Indian rental regulations via hybrid BM25 + SBERT retrieval.
+            </p>
+          </div>
+
+          <div class="chat-container">
+            <div class="chat-header">
+              <div class="chat-header-info">
+                <h3>Regulatory Tenancy Assistant</h3>
+                <p>Answers strictly grounded in authoritative statutes — no general hallucination.</p>
+              </div>
+              <span class="chat-corpus-pill">Hybrid BM25 + SBERT · 10 Regulatory Acts</span>
+            </div>
+
+            <div class="chat-messages" id="chat-messages-stream">
+              <!-- Welcome bot message -->
+              <div class="chat-message assistant">
+                <div class="assistant-box">
+                  <div class="assistant-answer">
+                    Welcome to the AI Rental Assistant. I answer tenancy, lease, and habitability questions using our ingested regulatory knowledge base (Model Tenancy Act 2021, Maharashtra Rent Control Act 1999, National Building Code 2016, and Indian Contract Act 1872).
+                    <br><br>
+                    Every answer provides full statutory citations, section provisions, and relevance scores.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick sample questions -->
+            <div class="chat-prompt-pills">
+              <span style="font-size: 11.5px; font-weight: 700; color: var(--text-dim); display: flex; align-items: center;">Try asking:</span>
+              <button class="prompt-pill" onclick="sendPrompt('Is a 3-month security deposit allowed?')">3-month security deposit?</button>
+              <button class="prompt-pill" onclick="sendPrompt('Who is responsible for repairing wall cracks and mold?')">Wall cracks &amp; mold repairs?</button>
+              <button class="prompt-pill" onclick="sendPrompt('Can the landlord cut off water or electricity?')">Can landlord cut water?</button>
+              <button class="prompt-pill" onclick="sendPrompt('Are unilateral penalty clauses valid in rental agreements?')">Unilateral penalties?</button>
+            </div>
+
+            <!-- Chat input form -->
+            <form class="chat-input-row" id="chat-form">
+              <input type="text" id="chat-query-input" class="chat-input" placeholder="Ask a tenancy or lease regulation question..." autocomplete="off">
+              <button type="submit" class="btn btn-primary" id="btn-chat-send">Send</button>
+            </form>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             5. INSPECTION SUMMARY VIEW
+             =================================================================== -->
+        <section id="view-inspection-summary" class="view-section">
+          <div class="section-header">
+            <h2 class="section-title">Inspection Summary &amp; Assessment Report</h2>
+            <p class="section-desc">
+              Integrated multimodal evaluation combining YOLO11 defects, NLP agreement audit, and statutory RAG grounding.
+            </p>
+          </div>
+
+          <!-- Hero Score Card -->
+          <div class="summary-hero">
+            <div class="score-display-group">
+              <div class="score-circle-wrapper">
+                <svg class="score-svg" viewBox="0 0 90 90">
+                  <circle class="score-svg-bg" cx="45" cy="45" r="38"></circle>
+                  <circle class="score-svg-progress" id="summary-circle-progress" cx="45" cy="45" r="38"></circle>
+                </svg>
+                <div class="score-number-overlay" id="summary-score-number">--</div>
+              </div>
+              <div class="score-meta">
+                <span class="score-label" id="summary-audit-id">AUDIT FILE #--</span>
+                <span class="score-status" id="summary-health-status">Awaiting Assessment</span>
+                <span class="score-confidence" id="summary-confidence-text">Run analysis with photos to compute score</span>
+              </div>
+            </div>
+
+            <!-- Subrisk Metric Chips -->
+            <div class="subrisk-metrics-grid">
+              <div class="subrisk-item">
+                <span class="subrisk-label">Visual Risk (40%)</span>
+                <span class="subrisk-value">
+                  <span class="subrisk-indicator indicator-low" id="ind-visual"></span>
+                  <span id="val-visual">0.0</span>
+                </span>
+              </div>
+              <div class="subrisk-item">
+                <span class="subrisk-label">Agreement Risk (30%)</span>
+                <span class="subrisk-value">
+                  <span class="subrisk-indicator indicator-low" id="ind-agreement"></span>
+                  <span id="val-agreement">0.0</span>
+                </span>
+              </div>
+              <div class="subrisk-item">
+                <span class="subrisk-label">Regulatory Risk (30%)</span>
+                <span class="subrisk-value">
+                  <span class="subrisk-indicator indicator-low" id="ind-regulatory"></span>
+                  <span id="val-regulatory">0.0</span>
+                </span>
+              </div>
+              <div class="subrisk-item">
+                <span class="subrisk-label">Total Risk</span>
+                <span class="subrisk-value" id="val-total" style="color: var(--primary);">0.0</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section: Grounded Statutory Evidence -->
+          <div class="card">
+            <div class="card-title">
+              <span>Authoritative Regulatory Grounding</span>
+              <span class="badge badge-info">Retrieved via RAG</span>
+            </div>
+            <p class="card-subtitle">
+              Statutory provisions automatically retrieved based on this property's specific defect findings and lease clauses.
+            </p>
+            <div id="summary-evidence-list">
+              <div class="empty-state">
+                <div class="empty-state-title">No regulatory evidence retrieved yet</div>
+                <div class="empty-state-desc">Upload inspection photos and run assessment to retrieve grounded statutory provisions.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section: Actionable Tenant Recommendations -->
+          <div class="card">
+            <div class="card-title">Targeted Tenant Action Items</div>
+            <p class="card-subtitle">Recommended steps before executing agreement or taking physical possession.</p>
+            <div id="summary-recommendations-list">
+              <div class="empty-state">
+                <div class="empty-state-title">No recommendations generated yet</div>
+                <div class="empty-state-desc">Actionable items will be computed from defect and lease analysis.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             6. LANDLORD QUESTIONS VIEW
+             =================================================================== -->
+        <section id="view-landlord-questions" class="view-section">
+          <div class="section-header" style="display: flex; align-items: center; justify-content: space-between;">
+            <div>
+              <h2 class="section-title">Inquiries for the Landlord</h2>
+              <p class="section-desc">
+                Targeted, finding-grounded questions dynamically generated from your visual defect detections, lease audit, and regulatory rights.
+              </p>
+            </div>
+            <button class="btn btn-secondary btn-sm" id="btn-copy-questions" onclick="copyLandlordQuestions()">
+              📋 Copy All Questions
+            </button>
+          </div>
+
+          <div class="card">
+            <div id="landlord-questions-container">
+              <div class="empty-state">
+                <div class="empty-state-icon">❓</div>
+                <div class="empty-state-title">No assessment findings yet</div>
+                <div class="empty-state-desc">
+                  Questions are generated dynamically from detected defects (mold, cracks, pests) and classified agreement terms. Run an assessment to generate your list.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
