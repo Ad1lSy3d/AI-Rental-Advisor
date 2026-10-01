@@ -1,0 +1,50 @@
+MODEL TENANCY ACT, 2021
+Ministry of Housing and Urban Affairs (MoHUA), Government of India
+An Act to establish Rent Authority to regulate renting of premises and to protect the interests of landlords and tenants and to provide speedy adjudication mechanism for resolution of disputes and matters connected therewith or incidental thereto.
+
+CHAPTER II: TENANCY AGREEMENT
+Section 4. Tenancy Agreement:
+(1) Notwithstanding anything contained in this Act or any other law for the time being in force, no person shall, after the commencement of this Act, let or take on rent any premises except by an agreement in writing.
+(2) The tenancy agreement shall be submitted jointly by the landlord and the tenant to the Rent Authority in the form specified in the First Schedule within a period of two months from the date of tenancy agreement.
+(3) Where the landlord and the tenant fail to jointly inform the execution of the tenancy agreement, the landlord and tenant shall separately inform the execution of tenancy agreement to the Rent Authority within a period of one month from the date of expiry of period specified in sub-section (2).
+
+Section 5. Period of tenancy:
+(1) Every tenancy entered into after the commencement of this Act shall be valid for a period as agreed upon between the landlord and the tenant and specified in the tenancy agreement.
+(2) The tenant may request the landlord for renewal or extension of the tenancy, within the agreed period, prior to the end of tenancy term.
+
+CHAPTER III: RENT AND SECURITY DEPOSIT
+Section 8. Revision of rent:
+(1) The revision of rent between the landlord and the tenant shall be in accordance with the terms of the tenancy agreement.
+(2) The landlord shall give a notice in writing to the tenant of three months before the revised rent becomes due.
+
+Section 10. Security deposit:
+(1) The security deposit to be paid by the tenant in advance shall be:
+(a) not exceeding two months rent, in case of residential premises; and
+(b) not exceeding six months rent, in case of non-residential premises.
+(2) The security deposit shall be refunded to the tenant on vacating the premises after making lawful deductions for any liability or arrears of rent or damage to the property directly caused by the tenant.
+
+CHAPTER IV: RIGHTS AND DUTIES OF LANDLORD AND TENANT
+Section 13. One set of original agreement to be given to tenant:
+The landlord shall provide one set of the original executed tenancy agreement to the tenant within fifteen days of signing the agreement.
+
+Section 15. Entry into premises by landlord:
+(1) Every landlord or the property manager may enter the premises let out on rent after serving a notice in writing, by person or through electronic mode, to the tenant at least twenty-four hours before the time of entry.
+(2) The notice shall specify the reason for entry, the day and time of entry between 7:00 AM and 8:00 PM.
+(3) The landlord may enter the premises to carry out inspection, repair works, or for showing the premises to prospective tenants or purchasers.
+(4) In case of emergency or imminent danger to life or property, the landlord may enter the premises without prior notice.
+
+Section 20. Essential services not to be disconnected:
+(1) No landlord or tenant, whether by himself or through any person, shall cut off or withhold any essential supply or service in the premises occupied by the tenant or landlord.
+(2) In case of contravention of sub-section (1), the Rent Authority may pass an order directing the immediate restoration of the essential supply or service and levy compensation on the defaulting party.
+
+CHAPTER V: EVICTION AND RECOVERY OF POSSESSION
+Section 21. Protection against eviction:
+(1) No tenant shall be evicted from the premises except on an application made by the landlord to the Rent Court on one or more of the following grounds:
+(a) that the tenant does not agree to pay the rent payable;
+(b) that the tenant has failed to pay arrears of rent for two consecutive months;
+(c) that the tenant has parted with the possession of whole or any part of the premises without obtaining the written consent of the landlord;
+(d) that the tenant has misused the premises despite receiving notice to desist from such misuse;
+(e) that the premises are required for the landlord's own occupation.
+
+Section 22. Compensation for holding over:
+Where a tenant fails to vacate the premises upon the cessation of tenancy, the landlord shall be entitled to compensation of double the monthly rent for the first two months, and four times the monthly rent for subsequent months until the tenant vacates possession.

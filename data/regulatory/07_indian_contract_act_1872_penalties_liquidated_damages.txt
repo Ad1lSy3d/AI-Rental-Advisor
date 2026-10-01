@@ -1,0 +1,15 @@
+THE INDIAN CONTRACT ACT, 1872
+(Central Act No. 9 of 1872)
+CHAPTER VI: OF THE CONSEQUENCES OF BREACH OF CONTRACT
+
+Section 73. Compensation for loss or damage caused by breach of contract:
+When a contract has been broken, the party who suffers by such breach is entitled to receive, from the party who has broken the contract, compensation for any loss or damage caused to him thereby, which naturally arose in the usual course of things from such breach, or which the parties knew, when they made the contract, to be likely to result from the breach of it.
+Such compensation is not to be given for any remote and indirect loss or damage sustained by reason of the breach.
+
+Section 74. Compensation for breach of contract where penalty stipulated for:
+(1) When a contract has been broken, if a sum is named in the contract as the amount to be paid in case of such breach, or if the contract contains any other stipulation by way of penalty, the party complaining of the breach is entitled, whether or not actual damage or loss is proved to have been caused thereby, to receive from the party who has broken the contract reasonable compensation not exceeding the amount so named or, as the case may be, the penalty stipulated for.
+Explanation: A stipulation for increased interest from the date of default may be a stipulation by way of penalty.
+Explanation: The courts in India have repeatedly held (Fateh Chand v. Balkishan Dass; Kailash Nath Associates v. DDA) that Section 74 eliminates the common law distinction between liquidated damages and penalties. The complaining party is entitled only to reasonable compensation reflecting actual loss suffered, and cannot unjustly enrich itself by enforcing arbitrary, disproportionate, or punitive penalties named in a lease agreement.
+
+Section 75. Party rightfully rescinding contract entitled to compensation:
+A person who rightfully rescinds a contract is entitled to compensation for any damage which he has sustained through the non-fulfilment of the contract.

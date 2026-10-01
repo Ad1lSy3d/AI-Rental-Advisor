@@ -1,0 +1,23 @@
+NATIONAL BUILDING CODE OF INDIA (NBC) 2016
+Bureau of Indian Standards (BIS), Government of India - SP 7: 2016
+PART 3 & PART 8: RESIDENTIAL HABITABILITY, SPACE, VENTILATION AND STRUCTURAL HEALTH NORMS
+
+1. HABITABLE ROOM DIMENSIONS:
+Clause 3.4.1: Every room intended for human habitation in a residential dwelling shall have a minimum floor area of not less than 9.5 square meters, with a minimum room width of 2.4 meters.
+Clause 3.4.2: The height of all habitable rooms shall not be less than 2.75 meters measured from the surface of the finished floor to the lowest point of the ceiling or false ceiling.
+Clause 3.4.3: Kitchens shall have a minimum floor area of 5.0 square meters with a minimum width of 1.8 meters, and shall be equipped with an impermeable, non-absorbent floor and a properly drained sink.
+
+2. LIGHTING AND VENTILATION:
+Clause 4.2.1: Every habitable room, kitchen, and bathroom shall have direct access to natural light and ventilation through one or more exterior windows, glazed doors, or fanlights opening directly to an exterior courtyard, open sky, or exterior verandah.
+Clause 4.2.2: The minimum aggregate opening area of windows, excluding frames, shall not be less than one-tenth (10%) of the floor area of the room in tropical and composite climate regions.
+Clause 4.2.3: In multi-family residential apartments, every enclosed bathroom or water closet without an exterior window shall be provided with mechanical exhaust ventilation capable of providing a minimum of three air changes per hour.
+
+3. DAMP-PROOFING AND HABITABILITY:
+Clause 5.1.1: Every building shall be provided with an effective damp-proof course (DPC) at plinth level to prevent capillary moisture rising from ground soils into living spaces.
+Clause 5.1.2: Roofs, exterior terraces, and bathroom sunken slabs shall be treated with waterproofing membranes to prevent internal water seepage, dampness, and efflorescence on interior ceilings and walls.
+Clause 5.1.3: Persistent dampness, visible mold growth, or peeling plaster caused by internal pipe leaks or facade penetration constitutes an uninhabitable condition that requires immediate structural remedy.
+
+4. PLUMBING AND SANITATION REQUIREMENTS:
+Clause 6.1: Every residential dwelling unit shall have an independent supply of safe, potable drinking water conforming to IS 10500 standards, providing a minimum of 135 liters per capita per day (lpcd).
+Clause 6.2: Every residential dwelling shall have at least one functional water closet, one wash basin, and one bath/shower connected to a public sewer or approved septic tank with functioning water seals to prevent sewer gases from entering the living area.
+Clause 6.3: Overhead and underground domestic water storage tanks shall be constructed of food-grade materials, fitted with mosquito-proof air vents, and thoroughly cleaned and disinfected at least once every six months.
